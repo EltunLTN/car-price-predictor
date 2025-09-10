@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Məlumat və Model faylları (böyük ola bilərlər)
+/data/
+/model/*.pkl
+
+# OS-a məxsus fayllar
+.DS_Store
