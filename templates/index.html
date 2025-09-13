@@ -4,50 +4,701 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avtomobil Qiyməti Təxmini v2.0</title>
-    <link rel="stylesheet" href="/static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c73d2;
+            --secondary: #ff6b6b;
+            --accent: #45aaf2;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #0acf83;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5f7fa"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23e6e9ef" stroke-width="1"/></svg>');
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #666;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        
+        /* Form Styles */
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            border: 1px solid #eaeaea;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5eb;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: #f8f9fa;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(69, 170, 242, 0.2);
+        }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: var(--border-radius);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(44, 115, 210, 0.25);
+        }
+        
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Result Container */
+        #result-container {
+            margin-top: 30px;
+            text-align: center;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #ced4da;
+            display: none; /* Initially hidden */
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        #result-container h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        #result-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--success);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar-widget {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .sidebar-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-title i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .btn-sidebar {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e1e5eb;
+            border-radius: var(--border-radius);
+            color: #495057;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .btn-sidebar:hover {
+            background: white;
+            border-color: var(--accent);
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .btn-sidebar i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+        
+        .feature-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .feature-text {
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #495057;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Süni İntellekt ilə Avtomobil Qiyməti Təxmini</h1>
-        <p>Avtomobilin məlumatlarını seçin və bazar qiymətini öyrənin.</p>
-        <form id="price-form">
-            <div class="form-group">
-                <label for="marka">Marka:</label>
-                <select id="marka" name="marka" required>
-                    <option value="" disabled selected>Marka seçin</option>
-                    {% for make in makes %}
-                        <option value="{{ make }}">{{ make }}</option>
-                    {% endfor %}
-                </select>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-car"></i>
+                <span>AvtoQiymət</span>
             </div>
-            <div class="form-group">
-                <label for="model">Model:</label>
-                <select id="model" name="model" required>
-                    <option value="" disabled selected>Əvvəlcə marka seçin</option>
-                </select>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Ana Səhifə</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Haqqında</a></li>
+                    <li><a href="#"><i class="fas fa-user-plus"></i> Qeydiyyat</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Əlaqə</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Süni İntellekt ilə Avtomobil Qiyməti Təxmini</h1>
+            <p>Avtomobilinizin bazar qiymətini süni intellekt texnologiyası ilə dəqiq hesablayın. Anında, etibarlı və pulsuz qiymət təxmini.</p>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        <div class="content-primary">
+            <div class="card">
+                <h2 class="card-title"><i class="fas fa-calculator"></i> Qiymət Hesablayıcı</h2>
+                <form id="price-form">
+                    <div class="form-group">
+                        <label for="marka">Marka:</label>
+                        <select id="marka" name="marka" required>
+                            <option value="" disabled selected>Marka seçin</option>
+                            {% for make in makes %}
+                                <option value="{{ make }}">{{ make }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model:</label>
+                        <select id="model" name="model" required disabled>
+                            <option value="" disabled selected>Əvvəlcə marka seçin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="il">Buraxılış İli:</label>
+                        <input type="number" id="il" name="il" placeholder="Məs: 2015" min="1950" max="2025" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yurus">Yürüş (km):</label>
+                        <input type="number" id="yurus" name="yurus" placeholder="Məs: 150000" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="muherrik">Mühərrik Həcmi (L):</label>
+                        <input type="number" step="0.1" id="muherrik" name="muherrik" placeholder="Məs: 1.8" min="0.1" required>
+                    </div>
+                    <button type="submit">
+                        <span class="button-text">Qiyməti Hesabla</span>
+                        <div class="loader"></div>
+                    </button>
+                </form>
+                <div id="result-container" class="hidden">
+                    <h2>Təxmini Qiymət:</h2>
+                    <p id="result-text">...</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="il">Buraxılış İli:</label>
-                <input type="number" id="il" name="il" placeholder="Məs: 2015" min="1950" max="2025" required>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title"><i class="fas fa-user-circle"></i> Hesab</h3>
+                <div class="btn-group">
+                    <a href="#" class="btn-sidebar"><i class="fas fa-sign-in-alt"></i> Daxil Ol</a>
+                    <a href="#" class="btn-sidebar"><i class="fas fa-user-plus"></i> Qeydiyyat</a>
+                    <a href="#" class="btn-sidebar"><i class="fas fa-key"></i> Şifrəni Unutdum</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="yurus">Yürüş (km):</label>
-                <input type="number" id="yurus" name="yurus" placeholder="Məs: 150000" min="0" required>
+            
+            <div class="sidebar-widget">
+                <h3 class="sidebar-title"><i class="fas fa-link"></i> Sürətli Keçidlər</h3>
+                <div class="btn-group">
+                    <a href="#" class="btn-sidebar"><i class="fas fa-info-circle"></i> Haqqımızda</a>
+                    <a href="#" class="btn-sidebar"><i class="fas fa-envelope"></i> Əlaqə</a>
+                    <a href="#" class="btn-sidebar"><i class="fas fa-question-circle"></i> Kömək</a>
+                    <a href="#" class="btn-sidebar"><i class="fas fa-shield-alt"></i> Gizlilik Siyasəti</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="muherrik">Mühərrik Həcmi (L):</label>
-                <input type="number" step="0.1" id="muherrik" name="muherrik" placeholder="Məs: 1.8" min="0.5" required>
-            </div>
-            <button type="submit">Qiyməti Hesabla</button>
-        </form>
-        <div id="result-container" class="hidden">
-            <h2>Təxmini Qiymət:</h2>
-            <p id="result-text">...</p>
         </div>
     </div>
-    <script src="/static/js/script.js"></script>
+
+    <section class="features">
+        <div class="container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="feature-title">Süni İntellekt Texnologiyası</h3>
+                <p class="feature-text">Müasir AI alqoritmləri ilə dəqiq qiymət təxmini edin.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Sürətli Hesablama</h3>
+                <p class="feature-text">Bir neçə saniyə ərzində avtomobilinizin qiymətini öyrənin.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="feature-title">Bazar Təhlili</h3>
+                <p class="feature-text">Real bazar qiymətlərinə əsaslanan təhlillər.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AvtoQiymət</h3>
+                    <p>Avtomobil qiymət təxmini üçün ən dəqiq və sürətli onlayn platforma.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Keçidlər</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Ana Səhifə</a></li>
+                        <li><a href="#">Haqqımızda</a></li>
+                        <li><a href="#">Xidmətlər</a></li>
+                        <li><a href="#">Əlaqə</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Əlaqə</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Bakı, Azərbaycan</li>
+                        <li><i class="fas fa-phone"></i> +994 12 345 67 89</li>
+                        <li><a href="mailto:info@avtoqiymet.az" style="color: #ccc; text-decoration: none;"><i class="fas fa-envelope"></i> info@avtoqiymet.az</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AvtoQiymət. Bütün hüquqlar qorunur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DİQQƏT: Buranı öz API serverinin ünvanı ilə əvəz et!
+            const API_URL = 'http://127.0.0.1:5000'; // Lokal test üçün
+
+            const makeSelect = document.getElementById('marka');
+            const modelSelect = document.getElementById('model');
+            const priceForm = document.getElementById('price-form');
+            const resultContainer = document.getElementById('result-container');
+            const resultText = document.getElementById('result-text');
+            const submitButton = priceForm.querySelector('button');
+            const buttonText = submitButton.querySelector('.button-text');
+            const loader = submitButton.querySelector('.loader');
+
+            // --- Marka Seçiləndə Modelləri Gətirmək ---
+            // Markaları yükləmə funksiyası (populateMakes) silindi, çünki markalar artıq server tərəfindən (Jinja2) birbaşa HTML-ə yazılır.
+            
+            makeSelect.addEventListener('change', async function() {
+                const selectedMake = this.value;
+                modelSelect.innerHTML = '<option value="" disabled selected>Yüklənir...</option>';
+                modelSelect.disabled = true;
+                if (!selectedMake) return;
+
+                try {
+                    const response = await fetch(`${API_URL}/get_models/${selectedMake}`);
+                    if (!response.ok) throw new Error('Modellər yüklənə bilmədi');
+                    const models = await response.json();
+                    
+                    modelSelect.innerHTML = '<option value="" disabled selected>Model seçin</option>';
+                    models.forEach(model => {
+                        const option = document.createElement('option');
+                        option.value = model;
+                        option.textContent = model;
+                        modelSelect.appendChild(option);
+                    });
+                    modelSelect.disabled = false;
+                } catch (error) {
+                    modelSelect.innerHTML = '<option value="" disabled selected>Xəta baş verdi</option>';
+                    console.error('Modelləri gətirmək mümkün olmadı:', error);
+                }
+            });
+
+            // --- Form Göndəriləndə Təxmin Etmək ---
+            priceForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                buttonText.style.display = 'none';
+                loader.style.display = 'block';
+                submitButton.disabled = true;
+
+                const formData = {
+                    marka: document.getElementById('marka').value,
+                    model: document.getElementById('model').value,
+                    il: document.getElementById('il').value,
+                    yurus: document.getElementById('yurus').value,
+                    muherrik: document.getElementById('muherrik').value
+                };
+
+                try {
+                    const response = await fetch(`${API_URL}/predict`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                    const data = await response.json();
+                    
+                    resultContainer.style.display = 'block'; 
+
+                    if (response.ok) {
+                        animateCountUp(resultText, data.prediction);
+                    } else {
+                        resultText.textContent = `Xəta: ${data.error || 'Naməlum xəta'}`;
+                    }
+                } catch (error) {
+                    resultContainer.style.display = 'block';
+                    resultText.textContent = 'Server ilə əlaqə qurmaq mümkün olmadı.';
+                } finally {
+                    buttonText.style.display = 'inline';
+                    loader.style.display = 'none';
+                    submitButton.disabled = false;
+                }
+            });
+
+            // --- Nəticə üçün "Count Up" Animasiyası ---
+            function animateCountUp(element, target) {
+                let current = 0;
+                const targetValue = parseInt(target);
+                const duration = 1500;
+                const stepTime = 15;
+                const steps = duration / stepTime;
+                const increment = targetValue / steps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetValue) {
+                        current = targetValue;
+                        clearInterval(timer);
+                    }
+                    element.textContent = `${new Intl.NumberFormat('az-AZ').format(Math.floor(current))} AZN`;
+                }, stepTime);
+            }
+        });
+    </script>
 </body>
 </html>
