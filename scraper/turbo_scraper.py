@@ -16,7 +16,6 @@ csv_path = os.path.join(data_dir, 'car_data.csv')
 
 BASE_URL = "https://turbo.az/autos"
 
-# CSV faylını açırıq və başlıqları yazırıq (YENİLƏNMİŞ: 'muherrik' sütunu əlavə edildi)
 csv_file = open(csv_path, 'w', newline='', encoding='utf-8')
 csv_writer = csv.writer(csv_file)
 csv_writer.writerow(['marka', 'model', 'il', 'yurus', 'muherrik', 'qiymet'])
@@ -24,8 +23,6 @@ csv_writer.writerow(['marka', 'model', 'il', 'yurus', 'muherrik', 'qiymet'])
 print("Təkmilləşdirilmiş skript işə salındı. Məlumatlar toplanır...")
 data_found_count = 0
 
-# DƏYİŞİKLİK: Səhifə sayını artırırıq (məsələn 50 səhifə)
-# Nəzərə al ki, bu proses bir neçə dəqiqə çəkə bilər.
 for page in range(1, 1971):
     print(f"{page}-ci səhifə analiz edilir...")
     url = f"{BASE_URL}?page={page}"
@@ -63,11 +60,9 @@ for page in range(1, 1971):
                 
                 if len(attributes_parts) > 0:
                     il = ''.join(filter(str.isdigit, attributes_parts[0]))
-                
-                # YENİ HİSSƏ: Mühərrik həcmini çıxarırıq (adətən ikinci element)
+               
                 if len(attributes_parts) > 1:
                     engine_text = attributes_parts[1].strip()
-                    # Mühərrik həcmini rəqəmə çeviririk (məsələn "1.8 L" -> 1.8)
                     muherrik = ''.join(c for c in engine_text if c.isdigit() or c == '.')
                 
                 if len(attributes_parts) > 2:
@@ -81,7 +76,7 @@ for page in range(1, 1971):
     except requests.exceptions.RequestException as e:
         print(f"Səhifəyə daxil olarkən xəta baş verdi: {e}")
     
-    time.sleep(1.5) # Saytı yükləməmək üçün gözləmə müddətini bir az artırdıq
+    time.sleep(1.5)
 
 csv_file.close()
 
