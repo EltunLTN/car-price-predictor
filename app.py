@@ -28,7 +28,6 @@ def get_models(make):
 def predict():
     data = request.get_json(force=True)
     input_data = pd.DataFrame([data], columns=['marka', 'model', 'il', 'yurus', 'muherrik'])
-    # ... (input datanın çevrilməsi eyni qalır) ...
     input_data['il'] = pd.to_numeric(input_data['il'])
     input_data['yurus'] = pd.to_numeric(input_data['yurus'])
     input_data['muherrik'] = pd.to_numeric(input_data['muherrik'])
