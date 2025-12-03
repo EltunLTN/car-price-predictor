@@ -1,12 +1,3 @@
-Əla\! GitHub repozitoriyanızın görüntüsünü təqdim etdiniz. Layihənin fayl strukturu onu göstərir ki, bu, bir **Car Price Prediction** layihəsidir və **Web API/App** vasitəsilə deploy edilib (çünki `app.py`, `requirements.txt`, `model`, `templates`, `scraper` faylları mövcuddur).
-
-Bu məlumatlara əsaslanaraq, potensial işəgötürənin və ya həmkarın layihəni anlaya bilməsi üçün ətraflı və professional **README.md** faylını hazırlayaq.
-
------
-
-### 📝 README.md Faylı
-
-````markdown
 # 🚗 Car Price Prediction System (End-to-End ML Deployment)
 
 Bu layihə, Azərbaycan bazarındakı avtomobillərin qiymətlərini proqnozlaşdırmaq üçün hazırlanmış tam funksional Maşın Öyrənməsi (ML) sistemidir. Proqnoz modelinin qurulmasından real-vaxt API deploymentuna qədər bütün prosesi əhatə edir.
@@ -37,7 +28,6 @@ Bu layihəni lokal kompüterinizdə qurmaq və işə salmaq üçün aşağıdak�
 ```bash
 git clone [https://github.com/EltunLTN/car-price-predictor.git](https://github.com/EltunLTN/car-price-predictor.git)
 cd car-price-predictor
-````
 
 ### 2\. Virtual Mühitin Qurulması
 
